@@ -15,3 +15,11 @@ theorem variance_nonneg (n : Nat) (hn : 0 < n)
     intro i hi
     exact sq_nonneg (x i - mean x)
   }
+
+noncomputable def indicator_above (x : Real) (a : Real) : Real :=
+  if x >= a then 1 else 0
+
+theorem markov_ineq (n : Nat) (hn: 0 < n)
+  (x : Fin n -> Real) (a: Real) (hx: forall i, x i >= 0) (ha: a > 0) :
+    mean (fun i => indicator_above (x i) a) <= mean x / a := by
+  sorry
