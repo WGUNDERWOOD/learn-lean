@@ -1,8 +1,7 @@
 import Lake
 open Lake DSL
 
-require aesop from git
-  "https://github.com/leanprover-community/aesop.git" @ "v4.29.0"
+require "leanprover-community" / "mathlib4" @ git "v4.29.1"
 
 package LearnLean
 
