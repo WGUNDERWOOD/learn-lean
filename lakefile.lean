@@ -1,12 +1,10 @@
 import Lake
 open Lake DSL
 
-package "learn-lean" where
-  -- add package configuration options here
+require aesop from git
+  "https://github.com/leanprover-community/aesop.git" @ "v4.29.0"
 
-lean_lib «LearnLean» where
-  -- add library configuration options here
+package LearnLean
 
 @[default_target]
-lean_exe "learn-lean" where
-  root := `Main
+lean_lib LearnLean

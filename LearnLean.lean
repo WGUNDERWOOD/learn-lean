@@ -1,3 +1,6 @@
--- This module serves as the root of the `LearnLean` library.
--- Import modules here that should be built as part of the library.
-import LearnLean.Basic
+import Aesop
+
+def cirno : String := "Cirno's Perfect Arithmetics Class has begun!"
+
+example : α → α :=
+  by aesop
