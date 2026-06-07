@@ -1,39 +1,17 @@
---import Aesop
-
---def cirno : String := "Cirno's Perfect Arithmetics Class has begun!"
-
---example : α → α :=
-  --by aesop
-
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic
 import Mathlib
 
-open Nat
+noncomputable def mean {n : Nat} (x : Fin n -> Real) : Real :=
+  (1 : Real) / n * Finset.sum Finset.univ x
 
-theorem infinite_primes : ∀ N : ℕ ,∃ p ≥ N , Nat.Prime p  := by
-  intro N
-  let M := N.factorial + 1
-  let p := Nat.minFac M
-
-  have h0 : Nat.Prime p := by
-    refine minFac_prime ?n1
-    have : N.factorial > 0 := by exact factorial_pos N
-    linarith
-
-  use p
-  apply And.intro
+theorem variance_nonneg (n : Nat) (hn : 0 < n)
+    (x : Fin n -> Real) :
+    mean (fun i => (x i - mean x)^2) >= 0 := by
+  apply mul_nonneg
   {
-    by_contra h
-    have h1 : p ∣ Nat.factorial N + 1 := by exact minFac_dvd M
-    have h2 : p ∣ Nat.factorial N := by
-      refine h0.dvd_factorial.mpr ?_
-      exact Nat.le_of_not_ge h
-
-    have h3 : p ∣ 1 := (Nat.dvd_add_right h2).mp h1
-    exact Nat.Prime.not_dvd_one h0 h3
+    exact Nat.one_div_cast_nonneg n
   }
-
   {
-    exact h0
+    apply Finset.sum_nonneg
+    intro i hi
+    exact sq_nonneg (x i - mean x)
   }
