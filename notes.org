@@ -1,0 +1,2 @@
+#+title: Learn Lean
+* (a : Nat) : Nat.succ a = a + 1
