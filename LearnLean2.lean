@@ -26,22 +26,19 @@ theorem infinitude_of_primes : ∀ n : ℕ, ∃ p : ℕ, n < p ∧ Nat.Prime p :
   use p
   constructor
   · by_contra h1
-    have h2 : p ∣ Nat.factorial n + 1:= by
-      exact Nat.minFac_dvd m
+    have h2 := Nat.minFac_dvd m
     have h3 : p ∣ Nat.factorial n := by
-      have h4 : p ≤ n := by
-        exact Nat.le_of_not_lt h1
-      refine Nat.dvd_factorial ?_ h4
-      exact Nat.minFac_pos m
+      have h4 := Nat.le_of_not_lt h1
+      exact Nat.dvd_factorial (Nat.minFac_pos m) h4
     have h5 : p ∣ 1 := by
       rw [Nat.dvd_add_iff_right h3]
       exact h2
-    have h6 : p = 1 := by
-      exact Nat.eq_one_of_dvd_one h5
+    have h6 := Nat.eq_one_of_dvd_one h5
     have h7 : Nat.Prime p := by
-      refine Nat.minFac_prime ?_
-      refine Ne.symm ((fun {a b} => Nat.add_one_ne_add_one_iff.mpr) ?_)
-      exact Ne.symm (Nat.factorial_ne_zero n)
+      have hh : m ≠ 1 := by
+        simp [m]
+        exact Nat.factorial_ne_zero n
+      exact Nat.minFac_prime hh
     rw [h6] at h7
     exact Nat.prime_one_false h7
   · have h8 : m ≠ 1 := by
