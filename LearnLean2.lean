@@ -32,9 +32,9 @@ theorem infinitude_of_primes : ∀ n : ℕ, ∃ p : ℕ, n < p ∧ Nat.Prime p :
   let p := Nat.minFac m
   use p
   have m_neq_one : m ≠ 1 := by
-      dsimp [m, n_fac]
-      simp
-      exact Nat.factorial_ne_zero n
+    dsimp [m, n_fac]
+    simp
+    exact Nat.factorial_ne_zero n
   constructor
   · by_contra not_n_le_p
     have p_dvd_m : p ∣ m := by
@@ -55,31 +55,29 @@ theorem infinitude_of_primes : ∀ n : ℕ, ∃ p : ℕ, n < p ∧ Nat.Prime p :
     exact Ne.elim m_neq_one m_eq_one
   · exact Nat.minFac_prime_iff.mpr m_neq_one
 
-#check Nat.minFac_eq_one_iff
+theorem one_over_x_to_zero : ∀ ε > (0 : ℝ), ∃ x > (0 : ℝ), ∀ y ≥ x, |1/y| ≤ ε := by
+  intro ε h_eps
+  let x := 1 / ε
+  use x
+  constructor
+  · exact one_div_pos.mpr h_eps
+  · intro y y_geq_x
+    have x_ge_zero : x > 0 := by
+      exact one_div_pos.mpr h_eps
+    have y_ge_zero : y > 0 := by
+      exact lt_of_lt_of_le x_ge_zero y_geq_x
+    have abs_y_eq_y : |y| = y := by
+      exact abs_of_pos y_ge_zero
+    calc
+      |1 / y| = 1 / |y| := by exact abs_one_div y
+      _ = 1 / y := by rw [abs_y_eq_y]
+    exact (one_div_le h_eps y_ge_zero).mp y_geq_x
 
---theorem infinitude_of_primes : ∀ n : ℕ, ∃ p : ℕ, n < p ∧ Nat.Prime p := by
---  intro n
---  let m := Nat.factorial n + 1
---  let p := Nat.minFac m
---  use p
---  constructor
---  · by_contra h1
---    have h2 := Nat.minFac_dvd m
---    have h3 : p ∣ Nat.factorial n := by
---      have h4 := Nat.le_of_not_lt h1
---      exact Nat.dvd_factorial (Nat.minFac_pos m) h4
---    have h5 : p ∣ 1 := by
---      rw [Nat.dvd_add_iff_right h3]
---      exact h2
---    have h6 := Nat.eq_one_of_dvd_one h5
---    have h7 : Nat.Prime p := by
---      have hh : m ≠ 1 := by
---        simp [m]
---        exact Nat.factorial_ne_zero n
---      exact Nat.minFac_prime hh
---    rw [h6] at h7
---    exact Nat.prime_one_false h7
---  · have h8 : m ≠ 1 := by
---      rw [add_ne_right]
---      exact Nat.factorial_ne_zero n
---    exact Nat.minFac_prime_iff.mpr h8
+-- #find
+-- #check
+-- K
+-- Show some Mathlib theorems, dominated convergence
+-- Statlib
+-- Curry-Howard
+-- Making life easier: aesop, omega, linarith
+-- Getting help: leansearch
