@@ -51,9 +51,9 @@
 *** Curry-Howard isomorphism
 *** Proposition -> Type
 *** Proof of P -> Element of P
-*** We write n : N : Type (the universe of types)
-*** Similarly, rfl : (1 + 1) : Prop
-*** trivial : True : Prop
+*** We write n : N, N : Type (the universe of types)
+*** Similarly, rfl : (1 + 1), (1 + 1) : Prop
+*** trivial : True, True : Prop
 *** The proposition False : Prop has no proofs!
 *** If P, Q : Prop, then a proof of "P -> Q" is a function
 **** It maps proofs of P to proofs of Q
@@ -77,6 +77,8 @@
 *** https://stat-lib.github.io/
 ** Getting help
 *** #check Nat.eq_one_of_dvd_one
+*** #eval Nat.minFac 10
+*** #eval Nat.minFac 1
 *** aesop, omega, linarith, ring, grind
 *** https://leansearch.net/
 *** https://lean-lang.org/
