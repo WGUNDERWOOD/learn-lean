@@ -1,2 +1,82 @@
 #+title: Learn Lean
-* (a : Nat) : Nat.succ a = a + 1
+* Outline
+** Getting started
+*** Lean
+**** Functional programming language and theorem prover
+**** Open source
+**** Designed for formal verification tasks
+**** Based on a form of type theory
+**** Launched in 2013
+**** Lean 4 released in 2021
+**** In 2025, "disproof" of Collatz conjecture revealed Lean implementation bug
+**** In 2026, three Erdos conjectures were solved and proved in Lean
+*** Mathlib
+**** Library (package) for Lean
+**** Repository of formalised mathematics
+**** Started in 2017
+**** Now contains over 200k theorems
+** Writing our first proof
+*** https://live.lean-lang.org/
+*** 1 + 1 = 2
+**** Example syntax and statement of proposition
+**** Lean output: target/goal
+**** rfl
+**** Tactic mode
+*** a = b
+**** Many theorems involve hypotheses
+**** Nat and \N
+**** Lean output: hypotheses
+**** exact
+*** a + a = 2 * c
+**** Multiple hypotheses
+**** rw and rw \l
+**** Library theorem: two_mul
+**** #check two_mul
+*** Absolute values
+**** \and
+**** constructor
+**** sorry
+**** exact?
+**** have
+** Review of syntax
+*** example
+*** rfl
+*** exact
+*** rw
+*** #check
+*** constructor
+*** sorry
+*** have
+** Basics of type-theoretic logic
+*** Curry-Howard isomorphism
+*** Proposition -> Type
+*** Proof of P -> Element of P
+*** We write n : N : Type (the universe of types)
+*** Similarly, rfl : (1 + 1) : Prop
+*** trivial : True : Prop
+*** The proposition False : Prop has no proofs!
+*** If P, Q : Prop, then a proof of "P -> Q" is a function
+**** It maps proofs of P to proofs of Q
+*** A proof of "P and Q" is a pair of proofs, one for P and one for Q
+*** A proof of "not P" is a function
+**** It maps proofs of P to proofs of False
+**** Because "not P" is "P implies False"
+** Infinitude of the prime numbers
+*** Famous proof due to Euclid, published in the Elements, ~300 BCE
+*** Write out proof on tablet
+*** Show Lean and LaTeX side-by-side
+*** forall, exists
+*** intro, let, use
+*** dsimp, simp
+*** by_contra
+*** \| (divides)
+** Browsing Mathlib
+*** https://github.com/leanprover-community/mathlib4
+*** Dominated convergence theorem
+** Statlib
+*** https://stat-lib.github.io/
+** Getting help
+*** #check Nat.eq_one_of_dvd_one
+*** aesop, omega, linarith, ring, grind
+*** https://leansearch.net/
+*** https://lean-lang.org/

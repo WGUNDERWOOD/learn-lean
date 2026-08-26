@@ -1,0 +1,41 @@
+\documentclass[12pt]{article}
+\usepackage[margin=2.2in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage{setspace}
+\setstretch{1.2}
+
+\newtheorem*{theorem}{Theorem}
+\newcommand{\N}{\mathbb{N}}
+
+\begin{document}
+
+\begin{theorem}[Infinitude of the primes]
+  For all $n \in \N$,
+  there exists $p \in \N$ such that
+  $p > n$ and $p$ is prime.
+\end{theorem}
+
+\begin{proof}
+  %
+  Take $n \in \N$, write $m \coloneqq n! + 1$,
+  and let $p$ be a prime factor of $m$.
+  %
+  \begin{itemize}
+    %
+    \item Note that $m \neq 1$ because $n! \neq 0$.
+    \item Therefore, $p$ is prime.
+    \item Suppose for contradiction that we do not have $p > n$.
+    \item Then $p \leq n$.
+    \item We have $p \mid m$ by definition of $p$.
+    \item Note that $p > 0$ because $p$ is a factor of $m$.
+    \item Also, $p \mid n!$ because $p \leq n$ by assumption and $p > 0$.
+    \item So $p \mid 1$ by modular arithmetic.
+    \item Thus, $p = 1$.
+    \item But $1$ is not prime \textreferencemark.
+      \qedhere
+    %
+  \end{itemize}
+  %
+\end{proof}
+
+\end{document}
