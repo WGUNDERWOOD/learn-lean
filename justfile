@@ -1,4 +1,4 @@
-default: tex
+default: tex lean
 
 tex:
     @tex-build primes.tex
