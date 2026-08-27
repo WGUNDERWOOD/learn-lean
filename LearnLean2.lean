@@ -161,6 +161,9 @@ example : Filter.Tendsto (fun (n : ℕ) => ∫ (x : ℝ), F n x ∂μ) Filter.at
     · rename_i not_x_in_zero_one
       aesop
   have int_f_zero : (∫ (x : ℝ), f x ∂μ) = 0 := by
-    sorry
+    apply integral_eq_zero_of_ae
+    dsimp [μ]
+    filter_upwards [MeasureTheory.Measure.ae_ne volume (1 : ℝ)] with x hx
+    simp [f, hx]
   rw [← int_f_zero]
   exact dct F f g μ F_measurable g_integrable g_dominates F_converges
