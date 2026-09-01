@@ -7,8 +7,8 @@ example (a b : ℕ) (h : a = b) : a = b := by
   exact h
 
 example (a b c : ℕ) (h1 : a = b) (h2 : b = c) : a + a = 2 * c  := by
-  rw [h1]
-  rw [← h2]
+  rw [h1] -- replace a with b
+  rw [← h2] -- replace c with b
   rw [Nat.two_mul]
 
 example (x y : ℝ) : x ≤ |x| ∧ x + y ≤ |x| + |y| := by

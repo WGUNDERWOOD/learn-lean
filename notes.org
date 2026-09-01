@@ -1,7 +1,14 @@
 #+title: Learn Lean
+* Preparation
+** chromium for screen sharing
+** Empty Lean file open on desktop, zoom in, fullscreen
+** Primes.pdf open in another window
+** Basics.lean open on laptop
+** Tablet for video and for writing
 * Outline
-** Getting started
+** Getting started (tablet)
 *** Lean
+**** Not an expert!
 **** Functional programming language and theorem prover
 **** Open source
 **** Designed for formal verification tasks
@@ -15,7 +22,7 @@
 **** Repository of formalised mathematics
 **** Started in 2017
 **** Now contains over 200k theorems
-** Writing our first proof
+** Writing our first proof (desktop)
 *** https://live.lean-lang.org/
 *** 1 + 1 = 2
 **** Example syntax and statement of proposition
@@ -30,24 +37,27 @@
 *** a + a = 2 * c
 **** Multiple hypotheses
 **** rw and rw \l
+**** comments
+**** rw?
 **** Library theorem: two_mul
 **** #check two_mul
 *** Absolute values
 **** \and
-**** constructor
 **** sorry
+**** constructor
 **** exact?
 **** have
-** Review of syntax
+** Review of syntax (tablet)
 *** example
 *** rfl
 *** exact
 *** rw
+*** comments
 *** #check
 *** constructor
 *** sorry
 *** have
-** Basics of type-theoretic logic
+** Basics of type-theoretic logic (tablet)
 *** Curry-Howard isomorphism
 *** Proposition -> Type
 *** Proof of P -> Element of P
@@ -61,6 +71,8 @@
 *** A proof of "not P" is a function
 **** It maps proofs of P to proofs of False
 **** Because "not P" is "P implies False"
+*** "P or Q" is more complicated
+**** Non-constructive example
 ** Infinitude of the prime numbers
 *** Famous proof due to Euclid, published in the Elements, ~300 BCE
 *** Write out proof on tablet

@@ -1,0 +1,175 @@
+\documentclass[12pt]{article}
+\usepackage[margin=2in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage{float}
+\usepackage{setspace}
+\setstretch{1.0}
+\usepackage{hyperref}
+
+\newtheorem*{theorem}{Theorem}
+\newcommand{\N}{\mathbb{N}}
+
+\begin{document}
+
+\section{Introduction to Lean}
+
+\begin{itemize}
+  \item Functional programming language and theorem prover
+  \item Designed for formal verification tasks
+  \item Based on dependent type theory
+  \item Open-source, first developed by Microsoft
+  \item First launched in 2013; Lean 4 released in 2021
+  \item In 2026, three Erd{\H o}s conjectures were resolved in Lean
+\end{itemize}
+
+\section{Mathlib}
+\begin{itemize}
+  \item Library (or package) for Lean
+  \item Repository of formalised mathematics
+  \item Started in 2017; now contains over 200\,000 theorems
+\end{itemize}
+
+\pagebreak
+
+\section{Writing our first proofs}
+
+\pagebreak
+
+\section{Review of syntax}
+\begin{itemize}
+  \item \texttt{example} \\
+    Used to introduce a new proposition to prove.
+  \item \texttt{rfl} \\
+    Prove a proposition by definition.
+  \item \texttt{exact h} \\
+    Prove a proposition by applying hypothesis \texttt{h}.
+  \item \texttt{rw [h]} \\
+    Rewrite the goal using hypothesis \texttt{h}.
+  \item Comments can be written with: \texttt{-- here is a comment}.
+  \item \texttt{\#check} \\
+    Check the type of an expression. \\
+    \texttt{\#check 1} gives \texttt{1:}$\mathbb{N}$. \\
+    \texttt{\#check (1 + 1 = 2)} gives \texttt{(1 + 1 = 2):Prop}.
+  \item \texttt{constructor} \\
+    Transform the goal \texttt{P and Q} into two goals, \texttt{P} and \texttt{Q}.
+  \item \texttt{sorry} \\
+    Temporarily prove any goal (and raise a warning).
+  \item \texttt{have} \\
+    Introduce a new sub-goal to prove.
+\end{itemize}
+
+\pagebreak
+
+\section{Basics of type-theoretic logic}
+
+\begin{itemize}
+  \item The Curry--Howard correspondence gives an isomorphism between
+    models for \emph{type theory} and \emph{logic}.
+\end{itemize}
+
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}{|c|c|}
+      \hline
+      Type theory & Logic \\
+      \hline
+      Type \texttt{T} & Proposition \texttt{P} \\
+      Element of type \texttt{x:T} & Proof of proposition \texttt{h:P} \\
+      \texttt{n:}$\mathbb{N}$ & \texttt{rfl:(1 + 1 = 2)} \\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\begin{itemize}
+  \item The proposition \texttt{True} has a proof
+    \texttt{trivial:True}.
+  \item The proposition \texttt{False} has no proofs!
+  \item If \texttt{P} and, \texttt{Q} are propositions,
+    then a proof of \texttt{P}$\implies$\texttt{Q}
+    is a function mapping proofs of \texttt{P}
+    to proofs of \texttt{Q}.
+  \item A proof of \texttt{P and Q} is a pair of proofs,
+    one for \texttt{P} and one for \texttt{Q}:
+    \texttt{(hP, hQ):(P and Q)} where
+    \texttt{hP:P} and \texttt{hQ:Q}.
+  \item A proof of \texttt{not P} is a function
+    mapping proofs of \texttt{P} to proofs of \texttt{False}.
+  \item \texttt{P or Q} is rather more complicated:
+    we may prove \texttt{P or Q} without having a proof for either
+    \texttt{P} or \texttt{Q}. For example:
+    %
+    \begin{align*}
+      \exists p, q \in \mathbb{R} \setminus \mathbb{Q}:
+      p^q \in \mathbb{Q}.
+    \end{align*}
+    \emph{Proof.}
+    Consider $x \coloneqq \sqrt{2}^{\sqrt{2}}$ and
+    $x^{\sqrt 2}$.
+\end{itemize}
+
+\pagebreak
+
+\section{Infinitude of the primes}
+
+We present a famous result and proof due to Euclid,
+published in the Elements, around 300 BCE.
+
+\begin{theorem}[Infinitude of the primes]
+  For all $n \in \N$,
+  there exists $p \in \N$ such that
+  $p > n$ and $p$ is prime.
+\end{theorem}
+
+\begin{proof}
+  %
+  Take $n \in \N$, write $m \coloneqq n! + 1$,
+  and let $p$ be a prime factor of $m$.
+  %
+  \begin{itemize}
+    %
+    \item Note that $m \neq 1$ because $n! \neq 0$.
+    \item Therefore, $p$ is prime.
+    \item Suppose for contradiction that we do not have $p > n$.
+    \item Then $p \leq n$.
+    \item Note that $p > 0$ because $p$ is a factor of $m$.
+    \item We have $p \mid m$ by definition of $p$.
+    \item Also, $p \mid n!$ because $p \leq n$ by assumption and $p > 0$.
+    \item So $p \mid 1$ by modular arithmetic.
+    \item Thus, $p = 1$.
+    \item But $1$ is not prime \textreferencemark.
+      \qedhere
+    %
+  \end{itemize}
+  %
+\end{proof}
+
+\pagebreak
+
+\section{Getting help}
+
+\begin{itemize}
+  \item \texttt{\#check} \\
+    Check the type of an expression.
+    Remember: propositions and proofs have types
+    and can be checked! \\
+    For example, \texttt{\#check Nat.eq\_one\_of\_dvd\_one}
+  \item \texttt{\#eval} \\
+    Evaluate some Lean code. \\
+    For example, \texttt{\#eval Nat.minFac 1}
+  \item Advanced tactics for finding proofs: \\
+    \texttt{aesop}, \texttt{omega}, \texttt{linarith},
+    \texttt{ring}, \texttt{grind}
+  \item \url{https://leansearch.net/} \\
+    Search Mathlib using natural language.
+  \item \url{https://github.com/leanprover-community/mathlib4} \\
+    The Mathlib code repository.
+  \item https://lean-lang.org/ \\
+    Core documentation for Lean.
+\end{itemize}
+
+\pagebreak
+
+\section{A simple limit theorem}
+
+\end{document}

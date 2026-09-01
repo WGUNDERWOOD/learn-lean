@@ -1,11 +1,11 @@
 default: tex lean
 
 tex:
-    @tex-build primes.tex
-    @tex-check primes.log
-    @compress-pdf -h primes.pdf
-    @compress-pdf -h primes.pdf
-    @compress-pdf -h primes.pdf
+    @tex-build lean.tex
+    @tex-check lean.log
+    @compress-pdf -h lean.pdf
+    @compress-pdf -h lean.pdf
+    @compress-pdf -h lean.pdf
 
 lean:
     lake build

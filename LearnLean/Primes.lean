@@ -17,10 +17,10 @@ theorem infinitude_of_primes :
   · by_contra not_p_ge_n
     have p_leq_n : p ≤ n := by
       exact Nat.le_of_not_lt not_p_ge_n
-    have p_dvd_m : p ∣ m := by
-      exact Nat.minFac_dvd m
     have p_ge_zero : p > 0 := by
       exact Nat.minFac_pos m
+    have p_dvd_m : p ∣ m := by
+      exact Nat.minFac_dvd m
     have p_dvd_n_fac : p ∣ n_fac := by
       dsimp [n_fac]
       exact Nat.dvd_factorial p_ge_zero p_leq_n
