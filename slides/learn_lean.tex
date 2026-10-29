@@ -1,0 +1,209 @@
+% !TeX program = lualatex
+
+\documentclass[handout]{beamer}
+
+\input{preamble.tex}
+
+\title{
+  Formal Theorem Proving in Lean
+  \vspace*{-2mm}
+}
+
+\author[shortname]{\textbf{William G.\ Underwood}}
+
+\institute{
+  \footnotesize
+  \emph{Department of Statistics,
+  University of Warwick}
+}
+
+\date{2nd November, 2026}
+
+\begin{document}
+\NoHyper
+
+\begin{frame}[noframenumbering,plain]{}
+  \titlepage
+\end{frame}
+
+\begin{frame}{What is Lean?}
+
+  \begin{itemize}
+    \item Functional programming language and theorem prover
+    \item Designed for formal verification tasks
+    \item Based on dependent type theory
+    \item Open-source, first developed by Microsoft
+    \item First launched in 2013; Lean 4 released in 2021
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Lean and AI}
+
+  \begin{itemize}
+
+    \item In 2026, three Erd{\H o}s conjectures were resolved in Lean
+
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{The Mathlib repository}
+
+\begin{itemize}
+  \item Library (or package) for Lean
+  \item Repository of formalised mathematics
+  \item Started in 2017; now contains over 200\,000 theorems
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Writing our first proofs}
+
+  \begin{itemize}
+    \item \texttt{example}:
+      Introduce a new proposition to prove.
+    \item \texttt{rfl}:
+      Prove a proposition by definition.
+    \item \texttt{exact h}:
+      Prove a proposition by applying hypothesis \texttt{h}.
+    \item \texttt{rw [h]}:
+      Rewrite the goal using hypothesis \texttt{h}.
+    \item Comments can be written with: \texttt{-- here is a comment}.
+    \item \texttt{\#check}:
+      Check the type of an expression. \\
+      \texttt{\#check 1} returns \texttt{1:}$\N$. \\
+      \texttt{\#check (1 + 1 = 2)} returns \texttt{(1 + 1 = 2):Prop}.
+    \item \texttt{constructor}:
+      Transform \texttt{P and Q} into two goals, \texttt{P} and \texttt{Q}.
+    \item \texttt{sorry}:
+      Temporarily prove any goal (and raise a warning).
+    \item \texttt{have}:
+      Introduce a new sub-goal to prove.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Basics of type-theoretic logic}
+
+\begin{itemize}
+  \item The Curry--Howard correspondence gives an isomorphism between
+    models for \emph{type theory} and \emph{logic}.
+\end{itemize}
+
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}{|c|c|}
+      \hline
+      Type theory & Logic \\
+      \hline
+      Type \texttt{T} & Proposition \texttt{P} \\
+      Element of type \texttt{x:T} & Proof of proposition \texttt{h:P} \\
+      \texttt{n:}$\N$ & \texttt{rfl:(1 + 1 = 2)} \\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\begin{itemize}
+  \item The proposition \texttt{True} has a proof
+    \texttt{trivial:True}.
+  \item The proposition \texttt{False} has no proofs!
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Basics of type-theoretic logic}
+
+\begin{itemize}
+  \item If \texttt{P} and \texttt{Q} are propositions,
+    then a proof of \texttt{P}$\implies$\texttt{Q} \\
+    is a function mapping proofs of \texttt{P}
+    to proofs of \texttt{Q}.
+  \item A proof of \texttt{P and Q} is a pair of proofs,
+    one for \texttt{P} and one for \texttt{Q}:
+    \texttt{(hP, hQ):(P and Q)} where
+    \texttt{hP:P} and \texttt{hQ:Q}.
+  \item A proof of \texttt{not P} maps
+    proofs of \texttt{P} to proofs of \texttt{False}.
+  \item \texttt{P or Q} is rather more complicated:
+    we may prove \texttt{P or Q} without having a proof for either
+    \texttt{P} or \texttt{Q}. For example:
+    %
+    \begin{align*}
+      \exists p, q \in \R \setminus \Q:
+      p^q \in \Q.
+    \end{align*}
+    \emph{Proof.} \
+    Consider $x \coloneqq \sqrt{2}^{\sqrt{2}}$ and
+    $x^{\sqrt 2}$.
+    \qed
+\end{itemize}
+\end{frame}
+
+\begin{frame}[plain]{Infinitude of the primes}
+
+  %We present a famous result and proof due to Euclid,
+  %published in the Elements, around 300 BCE.
+
+  \vspace*{0mm}
+
+  \begin{beamertheorem}
+    For all $n \in \N$,
+    there exists $p \in \N$ such that
+    $p > n$ and $p$ is prime.
+  \end{beamertheorem}
+
+  \vspace*{-1mm}
+
+  \begin{proof}
+    %
+    Take $n \in \N$, write $m \coloneqq n! + 1$,
+    and let $p$ be a prime factor of $m$.
+    \vspace*{-3mm}
+    %
+    \begin{itemize}
+      \setlength{\itemsep}{0mm}
+      \item Note that $m \neq 1$ because $n! \neq 0$.
+      \item Therefore, $p$ is prime.
+      \item Suppose for contradiction that we do not have $p > n$.
+      \item Then $p \leq n$.
+      \item Note that $p > 0$ because $p$ is a factor of $m$.
+      \item We have $p \mid m$ by definition of $p$.
+      \item Also, $p \mid n!$ because $p \leq n$ by assumption and $p > 0$.
+      \item So $p \mid 1$ by modular arithmetic.
+      \item Thus, $p = 1$.
+      \item But $1$ is not prime \textreferencemark.
+        {\addtobeamertemplate{qed symbol}{}{\hspace*{2mm}}\qedhere}
+    \end{itemize}
+    %
+  \end{proof}
+
+\end{frame}
+
+\begin{frame}{Getting help}
+
+\begin{itemize}
+  \item \texttt{\#check}:
+    Check the type of an expression. \\
+    Propositions and proofs have types
+    and can be checked! \\
+    For example, \texttt{\#check Nat.eq\_one\_of\_dvd\_one}
+  \item \texttt{\#eval}:
+    Evaluate some Lean code. \\
+    For example, \texttt{\#eval Nat.minFac 1}
+  \item Advanced tactics for finding proofs: \\
+    \texttt{aesop}, \texttt{omega}, \texttt{linarith},
+    \texttt{ring}, \texttt{grind}
+  \item \url{https://leansearch.net/}: \\
+    Search Mathlib using natural language.
+  \item \url{github.com/leanprover-community/mathlib4} \\
+    The Mathlib code repository.
+  \item \url{https://lean-lang.org/}:
+    Core documentation for Lean.
+\end{itemize}
+
+\end{frame}
+
+\endNoHyper
+\end{document}

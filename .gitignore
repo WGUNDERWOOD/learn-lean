@@ -6,3 +6,11 @@
 *.synctex.gz
 *.sha256
 *.out
+*.bbl
+*.bcf
+*.blg
+*.nav
+*.pdf
+*.run.xml
+*.snm
+*.toc

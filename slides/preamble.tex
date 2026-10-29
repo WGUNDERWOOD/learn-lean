@@ -1,0 +1,151 @@
+% packages
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{microtype}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{xskak}
+\usepackage{tikz}
+\usepackage{qrcode}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{calc}
+\usepackage[style=authoryear-comp,maxcitenames=3]{biblatex}
+
+% bibliography
+\addbibresource{refs.bib}
+\setbeamertemplate{bibliography item}{}
+\DeclareFieldFormat*{title}{\textnormal{\mkbibemph{#1}}}
+\DeclareDelimFormat{nameyeardelim}{\addcomma\space}
+
+% captions
+\captionsetup[figure]{labelformat=empty}
+\captionsetup[subfigure]{labelformat=empty,justification=centering}
+\captionsetup[subfigure]{skip=1mm}
+
+%% macros
+\newcommand{\TODO}[1]{\textcolor{red}{TODO: #1}}
+\renewcommand{\P}{{\mathbb{P}}}
+\newcommand{\E}{{\mathbb{E}}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+
+% itemize indent and spacing
+\setlength{\leftmargini}{0.8cm}
+\setlength{\leftmarginii}{0.5cm}
+
+% beamer theme
+\usetheme{metropolis}
+\usefonttheme{professionalfonts}
+\setmonofont{FiraMono-Regular.ttf}
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[circle]
+\metroset{numbering=fraction}
+\setbeamersize{text margin left=5mm}
+\setbeamersize{text margin right=5mm}
+\metroset{block=fill}
+\setbeamerfont{bibliography entry author}{size=\tiny}
+\setbeamerfont{bibliography entry title}{size=\tiny}
+\setbeamerfont{bibliography entry location}{size=\tiny}
+\setbeamerfont{bibliography entry note}{size=\tiny}
+\setbeamertemplate{frametitle continuation}{%
+  \insertcontinuationcountroman
+}
+
+% Contradiction symbol
+\newfontfamily\symbolfont{DejaVu Sans}
+\renewcommand{\textreferencemark}{{\symbolfont ※}}
+
+% title page line
+\setbeamertemplate{title separator}{
+  \begin{tikzpicture}
+    \fill[fg] (0,0) rectangle (\textwidth, 0.2mm);
+  \end{tikzpicture}%
+  \par%
+}
+
+% arxiv
+\newcommand{\arxivref}[1]{\href{https://arxiv.org/abs/#1}{\textup{arXiv:#1}}}
+
+% title page margins
+\setbeamertemplate{title page}{
+  \begin{minipage}[b][\paperheight]{0.02\textwidth}
+    \hfill
+  \end{minipage}
+  \begin{minipage}[b][\paperheight]{0.94\textwidth}
+    \ifx\inserttitlegraphic\@empty\else\usebeamertemplate*{title graphic}\fi
+    \vfill%
+    \ifx\inserttitle\@empty\else\usebeamertemplate*{title}\fi
+    \ifx\insertsubtitle\@empty\else\usebeamertemplate*{subtitle}\fi
+    \usebeamertemplate*{title separator}
+    \ifx\beamer@shortauthor\@empty\else\usebeamertemplate*{author}\fi
+    \ifx\insertdate\@empty\else\usebeamertemplate*{date}\fi
+    \ifx\insertinstitute\@empty\else\usebeamertemplate*{institute}\fi
+    \vfill
+    \vspace*{1mm}
+  \end{minipage}
+}
+
+%% define colours
+%\definecolor{rosewater}{HTML}{dc8a78}
+%\definecolor{flamingo}{HTML}{dd7878}
+%\definecolor{pink}{HTML}{ea76cb}
+%\definecolor{mauve}{HTML}{8839ef}
+\definecolor{red}{HTML}{d20f39}
+%\definecolor{maroon}{HTML}{e64553}
+%\definecolor{peach}{HTML}{fe640b}
+%\definecolor{yellow}{HTML}{df8e1d}
+\definecolor{green}{HTML}{40803b}
+%\definecolor{teal}{HTML}{179299}
+\definecolor{sky}{HTML}{0055ff}
+%\definecolor{sapphire}{HTML}{209fb5}
+%\definecolor{blue}{HTML}{1e66f5}
+\definecolor{lavender}{HTML}{8287fd}
+\definecolor{lavenderlight}{HTML}{d9ceff}
+\definecolor{text}{HTML}{4c4f69}
+%\definecolor{subtext1}{HTML}{5c5f77}
+%\definecolor{subtext0}{HTML}{6c6f85}
+%\definecolor{overlay2}{HTML}{7c7f93}
+%\definecolor{overlay1}{HTML}{8c8fa1}
+%\definecolor{overlay0}{HTML}{9ca0b0}
+%\definecolor{surface2}{HTML}{acb0be}
+%\definecolor{surface1}{HTML}{bcc0cc}
+%\definecolor{surface0}{HTML}{ccd0da}
+\definecolor{base}{HTML}{eff1f5}
+%\definecolor{mantle}{HTML}{e6e9ef}
+%\definecolor{crust}{HTML}{dce0e8}
+
+% mix colours
+\colorlet{textdark}{text!35!black}
+%\colorlet{teallight}{teal!30!base}
+\colorlet{skylight}{sky!7!base}
+\colorlet{greendark}{green!80!black}
+\colorlet{lavenderdark}{lavender!80!black}
+\colorlet{reddark}{red!80!black}
+%\colorlet{pinklight}{pink!25!base}
+%\colorlet{yellowlight}{yellow!25!base}
+%\colorlet{lavenderlight}{lavender!50!base}
+
+% use colours
+\setbeamercolor{alerted text}{fg=lavender}
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{normal text}{fg=textdark}
+\setbeamercolor{block title}{bg=lavenderlight}
+\setbeamercolor{block body}{bg=skylight}
+
+% theorems
+\newtheoremstyle{beamertheorem}% <name>
+{3pt}% <Space above>
+{3pt}% <Space below>
+{}% <Body font>
+{}% <Indent amount>
+{\itshape}% <Theorem head font>
+{.}% <Punctuation after theorem head>
+{0em}% <Space after theorem headi>
+{}% <Theorem head spec (can be left empty, meaning `normal')>
+%
+\theoremstyle{beamertheorem}
+\newtheorem{beamertheorem}{Theorem}
+\setbeamertemplate{proof begin}{%
+  \begin{block}{\proofname}%
+}

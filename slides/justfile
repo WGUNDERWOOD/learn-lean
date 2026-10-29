@@ -1,0 +1,9 @@
+DOC := "learn_lean"
+
+slides:
+    @tex-fmt *.tex
+    @tex-build -l {{DOC}}.tex
+    @tex-check {{DOC}}.log
+    @compress-pdf *.pdf
+    @compress-pdf *.pdf
+    @compress-pdf *.pdf
