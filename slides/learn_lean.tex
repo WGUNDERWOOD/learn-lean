@@ -86,15 +86,15 @@
             tick align=outside,
           ]
           \addplot[
-              thick, lavender, no marks,
-              restrict expr to domain={\coordindex}{12:59}
-            ]
-            table[
-              col sep=comma,
-              ignore chars={"},
-              x index=0,
-              y index=1
-            ] {googletrends.csv};
+            thick, lavender, no marks,
+            restrict expr to domain={\coordindex}{12:59}
+          ]
+          table[
+            col sep=comma,
+            ignore chars={"},
+            x index=0,
+            y index=1
+          ] {googletrends.csv};
         \end{axis}
       \end{tikzpicture}
     \end{figure}
@@ -179,7 +179,8 @@
               \textbf{Type theory} & \textbf{Logic} \\
               \hline
               Type \texttt{T} & Proposition \texttt{P} \\
-              Element of type \texttt{x:T} & Proof of proposition \texttt{h:P} \\
+              Element of type \texttt{x:T} & Proof of proposition
+              \texttt{h:P} \\
               \hline
               $\N$\texttt{:Type} & \texttt{(1 + 1 = 2):Prop} \\
               \texttt{n:}$\N$ & \texttt{rfl:(1 + 1 = 2)} \\
@@ -245,7 +246,7 @@
       \vspace*{-3mm}
       %
       \begin{itemize}[<+(2)->]
-        \setlength{\itemsep}{0mm}
+          \setlength{\itemsep}{0mm}
         \item Note that $m \neq 1$ because $n! \neq 0$.
         \item Therefore, $p$ is prime.
         \item Suppose for contradiction that we do not have $p > n$.
