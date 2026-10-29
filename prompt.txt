@@ -1,4 +1,4 @@
-Create a file named Chebyshev.lean in the LearnLean directory. In this file, state and prove the following result.
+Create a file Chebyshev.lean in the LearnLean directory. In this file, state and prove the following result.
 
 \begin{equation*}
   \mathbb{P}\Biggl(
