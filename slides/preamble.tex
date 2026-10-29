@@ -10,6 +10,9 @@
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{calc}
 \usepackage[style=authoryear-comp,maxcitenames=3]{biblatex}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{dateplot}
 
 % bibliography
 \addbibresource{refs.bib}
@@ -146,6 +149,7 @@
 %
 \theoremstyle{beamertheorem}
 \newtheorem{beamertheorem}{Theorem}
+\newtheorem{prompt}{Prompt}
 \setbeamertemplate{proof begin}{%
   \begin{block}{\proofname}%
-}
+  }

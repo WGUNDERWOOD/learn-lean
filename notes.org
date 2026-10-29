@@ -1,10 +1,9 @@
 #+title: Learn Lean
 * Preparation
-** chromium for screen sharing
+** Use chromium for screen sharing
 ** Empty Lean file open on desktop, zoom in, fullscreen
-** Primes.pdf open in another window
-** Basics.lean open on laptop
-** Tablet for video and for writing
+** Slides PDF open in another window
+** Work laptop for video and Basics.lean open
 * Outline
 ** Getting started (tablet)
 *** Lean

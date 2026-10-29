@@ -1,0 +1,14 @@
+Create a file named Chebyshev.lean in the LearnLean directory. In this file, state and prove the following result.
+
+\begin{equation*}
+  \mathbb{P}\Biggl(
+    \biggl|
+      \frac{1}{n}
+      \sum_{i=1}^n
+      X_i
+    \biggr|
+    > \varepsilon
+  \Biggr)
+  \leq
+  \frac{\sigma^2}{n \varepsilon^2}.
+\end{equation*}

@@ -1,11 +1,7 @@
-default: tex lean
+default: slides lean
 
-tex:
-    @tex-build lean.tex
-    @tex-check lean.log
-    @compress-pdf -h lean.pdf
-    @compress-pdf -h lean.pdf
-    @compress-pdf -h lean.pdf
+slides:
+    @just slides/
 
 lean:
     lake build

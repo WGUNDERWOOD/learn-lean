@@ -4,12 +4,8 @@
 
 This repository contains teaching examples for learning Lean 4 and Mathlib.
 
-- `LearnLean/Basics.lean`: introductory proofs and tactics.
-- `LearnLean/Primes.lean`: proof of the infinitude of primes.
-- `LearnLean/Limits.lean`: an elementary real analysis limit.
-- `LearnLean/DCT.lean`: dominated convergence and an application.
-- `lean.tex` and `lean.pdf`: accompanying teaching material.
-- `notes.org`: presentation outline and preparation notes.
+- `LearnLean/` contains all Lean files.
+- `slides/` contains presentation slides in beamer.
 - `lakefile.lean` and `lake-manifest.json`: package configuration and dependency lockfile.
 - `lean-toolchain`: pinned Lean version; keep it aligned with the Mathlib dependency.
 - `flake.nix` and `flake.lock`: Nix build and development environment.
@@ -21,7 +17,6 @@ This repository contains teaching examples for learning Lean 4 and Mathlib.
 - Run `lake env lean LearnLean/Basics.lean` to check an individual file, substituting the relevant path.
 - Run `lake exe cache get` (or `just cache`) when Mathlib's compiled artifacts are needed.
 - The default `just` recipe builds both the teaching PDF and Lean modules. For Lean-only edits, use `lake build`.
-- `just tex` builds the PDF using the external `tex-build`, `tex-check`, and `compress-pdf` commands; these are not defined in this repository.
 
 ## Editing conventions
 
