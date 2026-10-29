@@ -1,6 +1,6 @@
 % !TeX program = lualatex
 
-\documentclass[handout]{beamer}
+\documentclass{beamer}
 
 \input{preamble.tex}
 
@@ -37,19 +37,20 @@
 
   \vspace*{-3mm}
 
-  \begin{itemize}
+  \begin{itemize}[<+(1)->]
     \item Functional programming language and theorem prover
     \item Designed for formal verification tasks
     \item Based on dependent type theory
     \item Open-source, initially developed by Microsoft
     \item First launched in 2013; Lean 4 released in 2021
     \item Try it in your browser (no installation needed) at:
+
+      \vspace*{2mm}
+
+      \centering
+      \large\url{https://live.lean-lang.org}
+
   \end{itemize}
-
-  \vspace*{2mm}
-
-  \centering
-  \large\url{https://live.lean-lang.org/}
 
 \end{frame}
 
@@ -58,46 +59,50 @@
   \vspace*{1mm}
 
   \begin{center}
-    \begin{tikzpicture}
-      \begin{axis}[
-          width=0.95\textwidth,
-          height=0.6\textheight,
-          date coordinates in=x,
-          xtick={
-            2022-01-01,
-            2023-01-01,
-            2024-01-01,
-            2025-01-01,
-            2026-01-01
-          },
-          xmax = 2026-10-01,
-          xticklabel=\year,
-          xtick style={line width=0.5pt},
-          ylabel={Google searches},
-          ymin=0,
-          ymax=105,
-          ytick=\empty,
-          grid=false,
-          axis lines=left,
-          tick align=outside,
-        ]
-        \addplot[
-          thick, lavender, no marks,
-          restrict expr to domain={\coordindex}{12:59}
-        ]
-        table[
-          col sep=comma,
-          ignore chars={"},
-          x index=0,
-          y index=1
-        ] {googletrends.csv};
-      \end{axis}
-    \end{tikzpicture}
+    \begin{figure}
+      \caption{\textbf{Google searches for Lean}}
+      \vspace*{-7mm}
+      \begin{tikzpicture}
+        \begin{axis}[
+            width=0.95\textwidth,
+            height=0.6\textheight,
+            date coordinates in=x,
+            xtick={
+              2022-01-01,
+              2023-01-01,
+              2024-01-01,
+              2025-01-01,
+              2026-01-01
+            },
+            xmax = 2026-10-01,
+            xticklabel=\year,
+            xtick style={line width=0.5pt},
+            ylabel={Searches},
+            ymin=0,
+            ymax=105,
+            ytick=\empty,
+            grid=none,
+            axis lines=left,
+            tick align=outside,
+          ]
+          \addplot[
+              thick, lavender, no marks,
+              restrict expr to domain={\coordindex}{12:59}
+            ]
+            table[
+              col sep=comma,
+              ignore chars={"},
+              x index=0,
+              y index=1
+            ] {googletrends.csv};
+        \end{axis}
+      \end{tikzpicture}
+    \end{figure}
   \end{center}
 
-  \vspace*{-1mm}
+  \vspace*{-2mm}
 
-  \begin{itemize}
+  \begin{itemize}[<+(1)->]
 
     \item Jul 2024: DeepMind's AlphaProof solves IMO problems.
     \item Jan 2026: OpenAI resolves an Erd{\H o}s problem.
@@ -111,20 +116,22 @@
 
 \begin{frame}{The Mathlib repository}
 
-  \begin{itemize}
+  \begin{itemize}[<+->]
     \item Mathlib is a library (or package) for Lean, started in 2017.
     \item Serves as a repository of formalised mathematics.
-    \item Now contains 200\,000 theorems and 2.4 million lines of code.
+    \item Now contains 200k theorems and 2.4M lines of code.
     \item Includes measure theory and probability but not statistics.
     \item E.g., the strong law of large numbers is
       \texttt{strong\_law\_ae}.
     \item Mathlib also provides tooling to make Lean easier to use.
+
+      \vspace*{4mm}
+
+      \centering
+      \hspace*{-10mm}
+      \normalsize\url{github.com/leanprover-community/mathlib4}
+
   \end{itemize}
-
-  \vspace*{1mm}
-
-  \centering
-  \url{github.com/leanprover-community/mathlib4}
 
 \end{frame}
 
@@ -132,7 +139,7 @@
 
   \vspace*{2mm}
 
-  \begin{itemize}
+  \begin{itemize}[<+(1)->]
     \item \texttt{example}:
       Introduce a new proposition to prove.
     \item \texttt{rfl}:
@@ -159,35 +166,41 @@
 \begin{frame}{Basics of type-theoretic logic}
 
   \begin{itemize}
-    \item The Curry--Howard correspondence gives an isomorphism between
+    \item<1-> The Curry--Howard correspondence gives an isomorphism between
       models for \emph{type theory} and \emph{logic}.
-  \end{itemize}
 
-  \begin{table}[H]
-    \begin{center}
-      \begin{tabular}{|c|c|}
-        \hline
-        \textbf{Type theory} & \textbf{Logic} \\
-        \hline
-        Type \texttt{T} & Proposition \texttt{P} \\
-        Element of type \texttt{x:T} & Proof of proposition \texttt{h:P} \\
-        \texttt{n:}$\N$ & \texttt{rfl:(1 + 1 = 2)} \\
-        \hline
-      \end{tabular}
-    \end{center}
-  \end{table}
+      \vspace*{3mm}
 
-  \begin{itemize}
-    \item The proposition \texttt{True} has a proof
+      \uncover<2->{
+        \begin{table}[H]
+          \begin{center}
+            \begin{tabular}{|c|c|}
+              \hline
+              \textbf{Type theory} & \textbf{Logic} \\
+              \hline
+              Type \texttt{T} & Proposition \texttt{P} \\
+              Element of type \texttt{x:T} & Proof of proposition \texttt{h:P} \\
+              \hline
+              $\N$\texttt{:Type} & \texttt{(1 + 1 = 2):Prop} \\
+              \texttt{n:}$\N$ & \texttt{rfl:(1 + 1 = 2)} \\
+              \hline
+            \end{tabular}
+          \end{center}
+        \end{table}
+      }
+
+      \vspace*{4mm}
+
+    \item<3-> The proposition \texttt{True} has a proof
       \texttt{trivial:True}.
-    \item The proposition \texttt{False} has no proofs!
+    \item<4-> The proposition \texttt{False} has no proofs!
   \end{itemize}
 
 \end{frame}
 
 \begin{frame}{Basics of type-theoretic logic}
 
-  \begin{itemize}
+  \begin{itemize}[<+->]
     \item If \texttt{P} and \texttt{Q} are propositions,
       then a proof of \texttt{(P}$\implies$\texttt{Q)} \\
       is a function mapping proofs of \texttt{P}
@@ -214,9 +227,6 @@
 
 \begin{frame}[plain]{A more interesting hand-written proof}
 
-  %We present a famous result and proof due to Euclid,
-  %published in the Elements, around 300 BCE.
-
   \vspace*{0mm}
 
   \begin{beamertheorem}[Infinitude of the primes]
@@ -227,39 +237,43 @@
 
   \vspace*{-1mm}
 
-  \begin{proof}
-    %
-    Take $n \in \N$, write $m \coloneqq n! + 1$,
-    and let $p$ be a prime factor of $m$.
-    \vspace*{-3mm}
-    %
-    \begin{itemize}
+  \uncover<2->{
+    \begin{proof}
+      %
+      Take $n \in \N$, write $m \coloneqq n! + 1$,
+      and let $p$ be a prime factor of $m$.
+      \vspace*{-3mm}
+      %
+      \begin{itemize}[<+(2)->]
         \setlength{\itemsep}{0mm}
-      \item Note that $m \neq 1$ because $n! \neq 0$.
-      \item Therefore, $p$ is prime.
-      \item Suppose for contradiction that we do not have $p > n$.
-      \item Then $p \leq n$.
-      \item Note that $p > 0$ because $p$ is a factor of $m$.
-      \item We have $p \mid m$ by definition of $p$.
-      \item Also, $p \mid n!$ because $p \leq n$ by assumption and $p > 0$.
-      \item So $p \mid 1$ by modular arithmetic.
-      \item Thus, $p = 1$.
-      \item But $1$ is not prime \textreferencemark.
-        {\addtobeamertemplate{qed symbol}{}{\hspace*{2mm}}\qedhere}
-    \end{itemize}
-    %
-  \end{proof}
+        \item Note that $m \neq 1$ because $n! \neq 0$.
+        \item Therefore, $p$ is prime.
+        \item Suppose for contradiction that we do not have $p > n$.
+        \item Then $p \leq n$.
+        \item Note that $p > 0$ because $p$ is a factor of $m$.
+        \item We have $p \mid m$ by definition of $p$.
+        \item Also, $p \mid n!$ because $p \leq n$ by assumption and $p > 0$.
+        \item So $p \mid 1$ by modular arithmetic.
+        \item Thus, $p = 1$.
+        \item But $1$ is not prime \textreferencemark.
+          {\addtobeamertemplate{qed symbol}{}{\hspace*{2mm}}\qedhere}
+      \end{itemize}
+      %
+    \end{proof}
+  }
 
 \end{frame}
 
 \begin{frame}{Writing an AI-assisted proof}
 
+  \vspace*{1mm}
+
   \begin{beamertheorem}
     Let $X_1, \ldots, X_n$ be independent and
     identically distributed random variables
     with mean $\E(X_1) = 0$ and variance
-    $\E(X_1^2) = \sigma^2 < \infty$.
-    Then for all $\varepsilon > 0$, we have
+    $\E(X_1^2) = \sigma^2 < \infty$. \\
+    Then, for all $\varepsilon > 0$, we have
     %
     \begin{equation*}
       \mathbb{P}\Biggl(
@@ -276,21 +290,25 @@
     %
   \end{beamertheorem}
 
-  \vspace*{-1mm}
+  \vspace*{1mm}
 
-  \begin{prompt}
-    Create a file \texttt{Chebyshev.lean}
-    in the \texttt{LearnLean} directory. \\
-    In this file, state and prove the following result. \\
-    \centering
-    \texttt{<paste LaTeX code here...>}
-  \end{prompt}
+  \uncover<2->{
+    \begin{prompt}
+      Create a file \texttt{Chebyshev.lean}
+      in the \texttt{LearnLean} directory. \\
+      In this file, state and prove the following result. \\
+      \centering
+      \texttt{<paste LaTeX code here...>}
+    \end{prompt}
+  }
 
 \end{frame}
 
 \begin{frame}{Getting help}
 
-  \begin{itemize}
+  \vspace*{1mm}
+
+  \begin{itemize}[<+->]
     \item \texttt{\#check}:
       Check the type of an expression. \\
       Propositions and proofs have types

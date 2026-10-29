@@ -1,31 +1,20 @@
 #+title: Learn Lean
 * Preparation
-** Use chromium for screen sharing
-** Empty Lean file open on desktop, zoom in, fullscreen
-** Slides PDF open in another window
-** Work laptop for video and Basics.lean open
+** Use chromium for screen sharing, hide waybar
+** Empty Lean file open, zoom in
+** Slides PDF open beside
+** Work laptop for video camera, Basics.lean, Primes.lean, notes.org open
 * Outline
-** Getting started (tablet)
-*** Lean
-**** Not an expert!
-**** Functional programming language and theorem prover
-**** Open source
-**** Designed for formal verification tasks
-**** Based on a form of type theory
-**** Launched in 2013
-**** Lean 4 released in 2021
-**** In 2025, "disproof" of Collatz conjecture revealed Lean implementation bug
-**** In 2026, three Erdos conjectures were solved and proved in Lean
-*** Mathlib
-**** Library (package) for Lean
-**** Repository of formalised mathematics
-**** Started in 2017
-**** Now contains over 200k theorems
-** Writing our first proof (desktop)
-*** https://live.lean-lang.org/
+** Slides: up to Mathlib
+*** Not an expert!
+*** Show https://live.lean-lang.org
+*** Show https://github.com/leanprover-community/mathlib4
+** Coding: writing our first proofs
 *** 1 + 1 = 2
 **** Example syntax and statement of proposition
 **** Lean output: target/goal
+**** Toggle lean dialog with SPC SPC i
+**** Apply suggestion with SPC SPC s
 **** rfl
 **** Tactic mode
 *** a = b
@@ -36,7 +25,7 @@
 *** a + a = 2 * c
 **** Multiple hypotheses
 **** rw and rw \l
-**** comments
+**** Comments
 **** rw?
 **** Library theorem: two_mul
 **** #check two_mul
@@ -46,50 +35,18 @@
 **** constructor
 **** exact?
 **** have
-** Review of syntax (tablet)
-*** example
-*** rfl
-*** exact
-*** rw
-*** comments
-*** #check
-*** constructor
-*** sorry
-*** have
-** Basics of type-theoretic logic (tablet)
-*** Curry-Howard isomorphism
-*** Proposition -> Type
-*** Proof of P -> Element of P
-*** We write n : N, N : Type (the universe of types)
-*** Similarly, rfl : (1 + 1), (1 + 1) : Prop
-*** trivial : True, True : Prop
-*** The proposition False : Prop has no proofs!
-*** If P, Q : Prop, then a proof of "P -> Q" is a function
-**** It maps proofs of P to proofs of Q
-*** A proof of "P and Q" is a pair of proofs, one for P and one for Q
-*** A proof of "not P" is a function
-**** It maps proofs of P to proofs of False
-**** Because "not P" is "P implies False"
-*** "P or Q" is more complicated
-**** Non-constructive example
-** Infinitude of the prime numbers
+**** by exact h is just the same as h
+** Slides: writing our first proofs to hand-written proof
 *** Famous proof due to Euclid, published in the Elements, ~300 BCE
-*** Write out proof on tablet
+** Coding: hand-written proof
 *** Show Lean and LaTeX side-by-side
 *** forall, exists
 *** intro, let, use
 *** dsimp, simp
 *** by_contra
 *** \| (divides)
-** Browsing Mathlib
-*** https://github.com/leanprover-community/mathlib4
-*** Dominated convergence theorem
-** Statlib
-*** https://stat-lib.github.io/
-** Getting help
-*** #check Nat.eq_one_of_dvd_one
-*** #eval Nat.minFac 10
-*** #eval Nat.minFac 1
-*** aesop, omega, linarith, ring, grind
-*** https://leansearch.net/
-*** https://lean-lang.org/
+** Slides: AI-assisted proof
+** Coding: AI-assisted proof
+*** Copy prompt.txt
+*** New Codex session in Nix env
+*** Go through the generated statement
