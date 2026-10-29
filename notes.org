@@ -1,9 +1,15 @@
 #+title: Learn Lean
 * Preparation
-** Use chromium for screen sharing, hide waybar
-** Empty Lean file open, zoom in
-** Slides PDF open beside
-** Work laptop for video camera, Basics.lean, Primes.lean, notes.org open
+** Personal laptop
+*** Share screen on Teams in chromium
+*** Hide waybar
+*** Enter Nix environment
+*** Open Live.lean, zoom in
+*** Open PDF slides in Pympress beside
+*** Reopen Lean file to resize Lean output window
+** Work laptop
+*** Join Teams meeting and share video camera and microphone
+*** Open Basics.lean, Primes.lean, notes.org for reference
 * Outline
 ** Slides: up to Mathlib
 *** Not an expert!
